@@ -96,7 +96,7 @@ public class TestPlan {
     @Test(testName = "TC 8: Testing “Sing up” section – positive test")
     public void VerifySingUpPagePositive() {
         driver.get(Utils.ENROLLMENT_URL);
-        SingUpPage webForm = new SingUpPage(driver);
+        EnrollmentSingUpFirstPage webForm = new EnrollmentSingUpFirstPage(driver);
         webForm.setClickFirstNameField();
         webForm.setPositiveFirstNameField();
         webForm.setClickLastNameField();
@@ -116,31 +116,54 @@ public class TestPlan {
     @Test(testName = "TC 9: Testing “Sing up” section – negative test")
     public void VerifySingUpPagNegative() {
         driver.get(Utils.ENROLLMENT_URL);
-        SingUpPage webForm = new SingUpPage(driver);
-        webForm.getNextButtonNegativeText();
+        EnrollmentSingUpFirstPage webForm = new EnrollmentSingUpFirstPage(driver);
+        webForm.setPersonalInformationPage();
         Utils.waitForElementToLoad(1);
+        webForm.setClickNextButtonNegative();
         Assert.assertEquals(webForm.getNextButtonNegativeText(), "Personal information");
+        Utils.waitForElementToLoad(2);
     }
 
     @Test(testName = "TC 10: Testing “Sing up” section, Second Page – positive test")
     public void VerifySingUpSecondPagPositive() {
         driver.get(Utils.ENROLLMENT_URL);
-        SingUpSecondPage webForm = new SingUpSecondPage(driver);
-        webForm.setClickEmailField();
-        Utils.waitForElementToLoad(5);
-        webForm.setPositiveEmailField();
-        Utils.waitForElementToLoad(5);
-        webForm.setClickPhoneField();
-        webForm.setPositivePhoneField();
-        webForm.setClickCountryField();
-        webForm.setPositiveCountryField();
-        webForm.setClickCityField();
-        webForm.setPositiveCityField();
-        webForm.setClickPostCodeField();
-        webForm.setPositivePostCodeField();
+        EnrollmentSingUpFirstPage firstWebForm = new EnrollmentSingUpFirstPage(driver);
+        firstWebForm.setPositiveUsernameField();
+        firstWebForm.setPositiveFirstNameField();
+        firstWebForm.setPositiveLastNameField();
+        firstWebForm.setClickPositivePasswordField();
+        firstWebForm.setClickPositiveConfirmPasswordField();
+        firstWebForm.setClickNextButton();
+
+        EnrollmentSingUpSecondPage secondWebForm = new EnrollmentSingUpSecondPage(driver);
+        secondWebForm.setClickEmailField();
+        secondWebForm.setPositiveEmailField();
+        secondWebForm.setClickPhoneField();
+        secondWebForm.setPositivePhoneField();
+        secondWebForm.setClickCountryField();
+        secondWebForm.setPositiveCountryField();
+        secondWebForm.setClickCityField();
+        secondWebForm.setPositiveCityField();
+        secondWebForm.setClickPostCodeField();
+        secondWebForm.setPositivePostCodeField();
+        secondWebForm.setClickSecondNextButton();
+        Assert.assertEquals(secondWebForm.getSecondNextButtonText(), "Course options");
         Utils.waitForElementToLoad(1);
-        webForm.setClickSecondNextButton();
-        Assert.assertEquals(webForm.getSecondNextButtonText(), "Course options");
+
+        EnrollmentSingUpThirdPage thirdWebForm = new EnrollmentSingUpThirdPage(driver);
+        thirdWebForm.setSecurityTester();
+        thirdWebForm.setNextButton();
+        Assert.assertEquals(thirdWebForm.getPaymentInformation(), "Payment information");
+
+        EnrollmentSingUpFourthPage fourthWebForm = new EnrollmentSingUpFourthPage(driver);
+        fourthWebForm.setClickCardHolderNameField();
+        fourthWebForm.setPositiveCardHolderNameField();
+        fourthWebForm.setClickCardNumberField();
+        fourthWebForm.setPositiveCardNumberField();
+        fourthWebForm.setClickCardCvcField();
+        fourthWebForm.setPositiveCardCvcField();
+        fourthWebForm.setClickNextButton();
+        Assert.assertEquals(fourthWebForm.getNextButtonText(), "Success!");
         Utils.waitForElementToLoad(1);
     }
 
@@ -148,9 +171,15 @@ public class TestPlan {
     public void VerifyReadMoreVirtualButton(){
         driver.get(Utils.BASE_URL);
         FirstPage webForm = new FirstPage(driver);
-        webForm.setReadMoreVirtualButton();
+        webForm.setVirtualOption();
+        webForm.setClickReadMoreVirtualButton();
         Utils.waitForElementToLoad(1);
         Assert.assertEquals(webForm.getVirtualPage(), "Virtual");
+        Utils.waitForElementToLoad(1);
+        webForm.setClickReturnVirtualButton();
+        Utils.waitForElementToLoad(1);
+        Assert.assertEquals(webForm.getHeaderText(), "Certified Software Tester");
+        Utils.waitForElementToLoad(1);
     }
 
     @Test(testName = "TC12: Testing Learn section – Read More button - First Page")
@@ -162,11 +191,12 @@ public class TestPlan {
         Assert.assertEquals(webForm.getFundamentalPage(), "Fundamentals page");
     }
 
-    @Test(testName = "TC12: Testing Learn section – Read More button - First Page")
+    @Test(testName = "TC 13: Testing Frequently Asked Questions section – accordion button - first question")
     public void VerifyAccordionButton() {
         driver.get(Utils.BASE_URL);
         FirstPage webForm = new FirstPage(driver);
         webForm.setExtendAccordionButton();
+        Assert.assertEquals(webForm.getExtendAccordionButton(), "Lorem ipsum");
         Utils.waitForElementToLoad(2);
     }
 

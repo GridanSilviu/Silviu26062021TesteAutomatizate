@@ -2,7 +2,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class SingUpPage extends PageObject{
+public class EnrollmentSingUpFirstPage extends PageObject{
 
     @FindBy(xpath = "//*[@id=\"firstName\"]")
     private WebElement clickFirstNameField;
@@ -69,9 +69,13 @@ public class SingUpPage extends PageObject{
 
     public void setClickNextButton(){ Utils.scrollToElement(driver, this.clickNextButton); this.clickNextButton.click();}
 
+    public void setPersonalInformationPage(){Utils.scrollToElement(driver, this.personalInformationPage);}
+
+    public void setClickNextButtonNegative(){this.clickNextButtonNegative.click();}
+
     public String getNextButtonText(){return this.contactInformationPage.getText();}
 
     public String getNextButtonNegativeText(){return this.personalInformationPage.getText();}
 
-    public SingUpPage(WebDriver driver) { super(driver); }
+    public EnrollmentSingUpFirstPage(WebDriver driver) { super(driver); }
 }

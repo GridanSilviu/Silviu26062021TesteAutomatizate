@@ -14,7 +14,7 @@ public class FirstPage extends PageObject{
     private WebElement InstructorsNavLink;
 
     @FindBy(xpath = "/html/body/nav/div/a")
-    private WebElement SoftwareTestingCoursNavLink;
+    private WebElement SoftwareTestingCourseNavLink;
 
     @FindBy(xpath = "/html/body/nav/div/a")
     private WebElement navbarSoftwareTestingCourse;
@@ -62,10 +62,16 @@ public class FirstPage extends PageObject{
     private WebElement singUpPage;
 
     @FindBy(xpath = "/html/body/section[3]/div/div/div[1]/div/div/a")
-    private WebElement readMoreVirtualButton;
+    private WebElement clickReadMoreVirtualButton;
+
+    @FindBy(xpath = "/html/body/section[3]/div/div/div[1]/div/div/h3")
+    private WebElement virtualOption;
 
     @FindBy(xpath = "/html/body/h1")
     private WebElement virtualPage;
+
+    @FindBy(xpath = "/html/body/a")
+    private WebElement clickReturnVirtualButton;
 
     @FindBy(xpath = "//*[@id=\"learn-fundamentals\"]/div/div/div[2]/a")
     private WebElement readMoreFundamentalButton;
@@ -73,10 +79,8 @@ public class FirstPage extends PageObject{
     @FindBy(xpath = "/html/body/h1")
     private WebElement fundamentalPage;
 
-    @FindBy(xpath = "//*[@id=\"instructors\"]/div/div/div[1]/div/div/a[2]/i")
+    @FindBy(xpath = "//*[@id=\"questions\"]/div[1]/h3/button")
     private WebElement extendAccordionButton;
-
-    public void setExtendAccordionButton(){this.extendAccordionButton.click();}
 
     public void setNavbarSoftwareTestingCourse(){this.navbarSoftwareTestingCourse.click();}
 
@@ -96,9 +100,15 @@ public class FirstPage extends PageObject{
 
     public void setEnrollmentFieldNegative(){this.enrollmentFieldNegative.sendKeys("@");}
 
-    public void setReadMoreVirtualButton(){ this.readMoreVirtualButton.click(); }
+    public void setVirtualOption(){ Utils.scrollToElement(driver,this.virtualOption); }
+
+    public void setClickReadMoreVirtualButton(){ this.clickReadMoreVirtualButton.click(); }
+
+    public void setClickReturnVirtualButton(){ this.clickReturnVirtualButton.click(); }
 
     public void setReadMoreFundamentalButton(){ this.readMoreFundamentalButton.click(); }
+
+    public void setExtendAccordionButton(){this.extendAccordionButton.click();}
 
     public String getNewsletterSectionText() { return this.newsletterSection.getText(); }
 
@@ -115,6 +125,8 @@ public class FirstPage extends PageObject{
     public String getVirtualPage() { return this.virtualPage.getText(); }
 
     public String getFundamentalPage() { return this.fundamentalPage.getText(); }
+
+    public String getExtendAccordionButton() {return this.clickEnrollmentButton.getText();}
 
     public void dismissPopup() { driver.switchTo().alert().dismiss(); }
 

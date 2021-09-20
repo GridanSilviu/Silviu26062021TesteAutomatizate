@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import java.util.concurrent.TimeUnit;
 
 public class Utils {
-    final static String CHROME_DRIVER_LOCATION = "cromedriver.exe";
+    final static String CHROME_DRIVER_LOCATION = "chromedriver.exe";
     final static String BASE_URL = "C:/Users/Silviu&Olimpia/IdeaProjects/Testing-Env/index.html";
     final static String ENROLLMENT_URL = "C:/Users/Silviu&Olimpia/IdeaProjects/Testing-Env/routes/enrollment.html";
 

@@ -2,7 +2,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class SingUpSecondPage extends PageObject{
+public class EnrollmentSingUpSecondPage extends PageObject{
 
     @FindBy(xpath = "//*[@id=\"email\"]")
     private WebElement clickEmailField;
@@ -50,11 +50,11 @@ public class SingUpSecondPage extends PageObject{
 
     public void setClickCountryField(){this.clickCountryField.click();}
 
-    public void setPositiveCountryField(){this.clickPositiveCountryField.sendKeys("r");}
+    public void setPositiveCountryField(){this.clickPositiveCountryField.sendKeys("RO");}
 
     public void setClickCityField(){this.clickCityField.click();}
 
-    public void setPositiveCityField(){this.clickPositiveCityField.sendKeys("b");}
+    public void setPositiveCityField(){this.clickPositiveCityField.sendKeys("Bv");}
 
     public void setClickPostCodeField(){this.clickPostCodeField.click();}
 
@@ -64,5 +64,5 @@ public class SingUpSecondPage extends PageObject{
 
     public String getSecondNextButtonText(){return this.contactCourseOptionsPage.getText();}
 
-    public SingUpSecondPage(WebDriver driver) { super(driver);}
+    public EnrollmentSingUpSecondPage(WebDriver driver) { super(driver);}
 }
